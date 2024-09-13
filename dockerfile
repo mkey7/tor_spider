@@ -3,10 +3,6 @@
 
 FROM debian:12
 
-# 添加chrome
-run wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
-run echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" | tee /etc/apt/sources.list.d/google-chrome.list
-
 RUN apt-get update -y
 #RUN apt-get upgrade -yy
 # 安装必要的系统依赖
@@ -22,7 +18,16 @@ RUN apt-get update && apt-get install -y \
     python3-dev \
     default-libmysqlclient-dev \
 	libmariadb-dev-compat \
-	libmariadb-dev google-chrome-stable
+	libmariadb-dev \
+	apt-transport-https lsb-release ca-certificates
+
+# 添加chrome
+run wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | gpg --dearmor -o /usr/share/keyrings/google-archive-keyring.gpg
+
+run echo "deb [signed-by=/usr/share/keyrings/google-archive-keyring.gpg] http://dl.google.com/linux/chrome/deb/ stable main" | tee /etc/apt/sources.list.d/google-chrome.list
+
+RUN apt-get update && apt-get install -y \
+	google-chrome-stable
 
 COPY requirements.txt /home/requirements.txt
 
