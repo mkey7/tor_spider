@@ -167,7 +167,7 @@ REQUEST_FINGERPRINTER_IMPLEMENTATION = "2.7"
 TWISTED_REACTOR = "twisted.internet.asyncioreactor.AsyncioSelectorReactor"
 FEED_EXPORT_ENCODING = "utf-8"
 
-Proxy = 'socks5h://43.154.195.176:9050'
+Proxy = 'socks5h://43.154.182.55:9050'
 
 # 教授提供
 # 公网
