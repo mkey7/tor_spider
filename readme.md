@@ -10,6 +10,8 @@ docker run -it --name spider1 -v /path/to/project:/home/tor_spider spider
 - 弃用**privoxy**
 - 使用**webdriver_manager**管理chromedriver
 
+> privoxy 负责处理dns解析，chrome没法直接设置socks5的代理实现dns解析
+
 ## 需配置
 
 > leakbase 和 torrez 的setting 都需要修改
